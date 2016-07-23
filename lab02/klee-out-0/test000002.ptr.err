@@ -1,0 +1,15 @@
+Error: memory error: out of bound pointer
+File: /home/klee/klee_build/klee-uclibc/libc/string/strcpy.c
+Line: 27
+assembly.ll line: 1093
+Stack: 
+	#000001093 in strcpy (s1=43107312, s2=44855216) at /home/klee/klee_build/klee-uclibc/libc/string/strcpy.c:27
+	#100000272 in __user_main (argc=4, argv=41037200) at /ubuntu/MBE/lab02/lab2C.c:26
+	#200002056 in __uClibc_main (main=24118144, argc=4, argv=41037200, app_init=0, app_fini=0, rtld_fini=0, stack_end=0) at /home/klee/klee_build/klee-uclibc/libc/misc/internals/__uClibc_main.c:401
+	#300003835 in main (=4, =41037200)
+Info: 
+	address: 43107327
+	next: object at 44623904 of size 4
+		MO3[4] allocated at main():  call void @__uClibc_main(i32 (i32, i8**, i8**)* bitcast (i32 (i32, i8**)* @__user_main to i32 (i32, i8**, i8**)*), i32 %0, i8** %1, void ()* null, void ()* null, void ()* null, i8* null)
+	prev: object at 43107312 of size 15
+		MO3147[15] allocated at __user_main():  %buf = alloca [15 x i8], align 1
